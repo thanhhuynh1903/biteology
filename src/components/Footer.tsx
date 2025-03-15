@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Row, Col, Typography, Divider, Space } from 'antd';
-import { FacebookOutlined, TwitterOutlined, InstagramOutlined, HeartOutlined } from '@ant-design/icons';
+import { FacebookOutlined, TwitterOutlined, InstagramOutlined } from '@ant-design/icons';
 import Biteology from "../assets/logo.png";
 const { Footer } = Layout;
 const { Title, Text, Link } = Typography;

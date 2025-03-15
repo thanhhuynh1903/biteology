@@ -1,6 +1,6 @@
 import type React from "react";
 import { useState, useEffect } from "react";
-import { Layout, Menu, Button, Dropdown, Badge, Space, message } from "antd";
+import { Layout, Menu, Button, Dropdown, Badge, Space } from "antd";
 import {
   LoginOutlined,
   DownOutlined,
