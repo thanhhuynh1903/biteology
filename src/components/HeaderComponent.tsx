@@ -32,14 +32,16 @@ const HeaderComponent: React.FC = () => {
 
   const menuItems = [
     {
+      key: "home",
+      label: "Home",
+      route: "",
+    },
+    {
       key: "join",
       label: "Join a Trial",
       route: "payment",
     },
-    {
-      key: "sites",
-      label: "Sites & Sponsors",
-    },
+
     {
       key: "unify",
       label: (
@@ -71,8 +73,9 @@ const HeaderComponent: React.FC = () => {
       <div className="logo-container">
         <span className="logo-text">
           <Link href="/" className="logo-text">
-          Biteology
-          </Link></span>
+            Biteology
+          </Link>
+        </span>
       </div>
 
       <Menu
@@ -82,9 +85,7 @@ const HeaderComponent: React.FC = () => {
         selectedKeys={[]}
         onClick={({ key }) => {
           const item = menuItems.find((m) => m.key === key);
-          if (item?.route) {
-            navigate(`/${item.route}`);
-          }
+          navigate(item?.route === "" ? "/" : `/${item?.route}`);
         }}
       />
 
