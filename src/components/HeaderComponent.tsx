@@ -1,47 +1,41 @@
-import type React from "react"
-import { useState, useEffect } from "react"
-import { Layout, Menu, Button, Dropdown, Badge, Space } from "antd"
-import { LoginOutlined, DownOutlined, MenuOutlined, CloseOutlined } from "@ant-design/icons"
-import { Link, useNavigate } from "react-router-dom"
-import "./Header.css"
-import biteologo  from "../assets/logo.png";
+import type React from "react";
+import { useState, useEffect } from "react";
+import { Layout, Menu, Button, Dropdown, Badge, Space, message } from "antd";
+import {
+  LoginOutlined,
+  DownOutlined,
+  MenuOutlined,
+  CloseOutlined,
+  CopyOutlined,
+} from "@ant-design/icons";
+import { Link, useNavigate } from "react-router-dom";
+import "./Header.css";
+import biteologo from "../assets/logo.png";
+import { ToastContainer, toast } from 'react-toastify';
 
-const { Header } = Layout
+const { Header } = Layout;
 
-
-const HeaderComponent: React.FC<any> = ({ }) => {
-  const navigate = useNavigate()
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+const HeaderComponent: React.FC<any> = ({}) => {
+  const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const caCode = "CA213n123nVHGJVGJKH67b3n4j5k"; 
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY
-      if (offset > 50) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
-      }
-    }
+      const offset = window.scrollY;
+      setScrolled(offset > 50);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const menuItems = [
-    {
-      key: "home",
-      label: "Home",
-      route: "",
-    },
-    {
-      key: "join",
-      label: "Join a Trial",
-      route: "payment",
-    },
+    { key: "home", label: "Home", route: "" },
+    { key: "join", label: "Join a Trial", route: "payment" },
     {
       key: "unify",
       label: (
@@ -60,19 +54,29 @@ const HeaderComponent: React.FC<any> = ({ }) => {
           />
         </Space>
       ),
-      route: "medical"
+      route: "medical",
     },
-    {
-      key: "about",
-      label: "About HealthMatch",
-    },
-  ]
+    { key: "about", label: "About HealthMatch" },
+  ];
 
   const handleMenuClick = ({ key }: { key: string }) => {
-    const item = menuItems.find((m) => m.key === key)
-    navigate(item?.route === "" ? "/" : `/${item?.route}`);  
-    setMobileMenuOpen(false)
-  }
+    const item = menuItems.find((m) => m.key === key);
+    if (item?.route !== undefined) {
+      navigate(item.route === "" ? "/" : `/${item.route}`);
+    }
+    setMobileMenuOpen(false);
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(caCode)
+      .then(() => {
+        toast.success("Copied successfully!");
+      })
+      .catch(() => {
+        toast.error("Failed to copy!");
+      });
+  };
 
   return (
     <Header className={`header ${scrolled ? "header-scrolled" : ""}`}>
@@ -100,12 +104,21 @@ const HeaderComponent: React.FC<any> = ({ }) => {
       </div>
 
       {/* Mobile Menu Button */}
-      <button className="mobile-menu-button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+      <button
+        className="mobile-menu-button"
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+      >
         {mobileMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
       </button>
 
       {/* Desktop Menu */}
-      <Menu mode="horizontal" items={menuItems} className="menu" selectedKeys={[]} onClick={handleMenuClick} />
+      <Menu
+        mode="horizontal"
+        items={menuItems}
+        className="menu"
+        selectedKeys={[]}
+        onClick={handleMenuClick}
+      />
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
@@ -114,6 +127,17 @@ const HeaderComponent: React.FC<any> = ({ }) => {
         </div>
       )}
 
+      {/* Copy Button */}
+      <Button
+        type="primary"
+        style={{ marginRight: 8, borderRadius: 20 }}
+        onClick={handleCopy}
+      >
+        <span><strong>CA : </strong>{caCode}</span>
+        <CopyOutlined />
+      </Button>
+
+      {/* Login Dropdown */}
       <Dropdown
         menu={{
           items: [
@@ -125,13 +149,14 @@ const HeaderComponent: React.FC<any> = ({ }) => {
       >
         <Button type="primary" className="login-button">
           <LoginOutlined />
-          <span>Login</span>
+          <span>Connect Wallet</span>
           <DownOutlined />
         </Button>
       </Dropdown>
+      <ToastContainer autoClose={400} />
+
     </Header>
-  )
-}
+  );
+};
 
-export default HeaderComponent
-
+export default HeaderComponent;

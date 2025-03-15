@@ -9,14 +9,14 @@ const FooterComponent: React.FC = () => {
   return (
     <Footer
       style={{
-        backgroundColor: '#F5F5F5', // Light gray background
+        backgroundColor: '#F5F5F5', 
         padding: '40px 20px',
-        display: 'flex',           // Sử dụng flexbox
-        justifyContent: 'center',  // Căn giữa theo chiều ngang
-        flexDirection: 'column',   // Xếp các phần tử theo cột
+        display: 'flex',           
+        justifyContent: 'center',
+        flexDirection: 'column',  
       }}
     >
-      <Row gutter={[32, 32]} justify="center"> {/* Căn giữa các cột */}
+      <Row gutter={[32, 32]} justify="center"> 
         {/* Branding Section */}
         <Col xs={24} sm={12} md={6}>
           <Space direction="vertical">
@@ -45,7 +45,7 @@ const FooterComponent: React.FC = () => {
             </div>
             <Text style={{ color: '#666666' }}>Healthy Bites - Healthy Life</Text>
             <Text style={{ color: '#333333' }}>
-              Giải pháp quản lý sức khỏe toàn diện dành cho mọi người.
+            Comprehensive health management solutions for everyone.
             </Text>
           </Space>
         </Col>
@@ -53,31 +53,31 @@ const FooterComponent: React.FC = () => {
         {/* Services Section */}
         <Col xs={24} sm={12} md={5}>
           <Title level={5} style={{ color: '#333333' }}>
-            Dịch vụ
+            Services
           </Title>
           <Space direction="vertical">
-            <Link style={{ color: '#333333' }}>Theo dõi sức khỏe</Link>
-            <Link style={{ color: '#333333' }}>Tư vấn dinh dưỡng</Link>
-            <Link style={{ color: '#333333' }}>Thu viện kiểm thúc</Link>
+            <Link style={{ color: '#333333' }}>Health Tracking</Link>
+            <Link style={{ color: '#333333' }}>Nutritional Counseling</Link>
+            <Link style={{ color: '#333333' }}>Library control</Link>
           </Space>
         </Col>
 
         {/* Links Section */}
         <Col xs={24} sm={12} md={5}>
           <Title level={5} style={{ color: '#333333' }}>
-            Liên kết
+            Linked
           </Title>
           <Space direction="vertical">
-            <Link style={{ color: '#333333' }}>Trang chủ</Link>
-            <Link style={{ color: '#333333' }}>Gói Premium</Link>
-            <Link style={{ color: '#333333' }}>Tài khoản</Link>
+            <Link style={{ color: '#333333' }}>Home</Link>
+            <Link style={{ color: '#333333' }}>Premium Package</Link>
+            <Link style={{ color: '#333333' }}>Account</Link>
           </Space>
         </Col>
 
         {/* Social Media Section */}
         <Col xs={24} sm={12} md={4}>
           <Title level={5} style={{ color: '#333333' }}>
-            Kết nối
+            Social
           </Title>
           <Space size="large">
             <FacebookOutlined style={{ fontSize: 24, color: '#333333' }} />

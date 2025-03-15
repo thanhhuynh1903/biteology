@@ -23,6 +23,7 @@ const HeroSection: React.FC = () => {
         <Button type="primary" size="large" className="get-started-btn">
           GET STARTED
         </Button>
+        
       </div>
     </div>
   );
