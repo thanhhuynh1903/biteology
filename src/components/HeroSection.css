@@ -1,0 +1,89 @@
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    width: 100%;
+    background-image: url("https://healthnewshub.org/wp-content/uploads/2024/01/Diabetes-Diet-3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+  
+  .hero-title {
+    color: white !important;
+    font-size: 48px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 24px !important;
+    font-weight: 700 !important;
+  }
+  
+  .hero-subtitle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 32px !important;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .get-started-btn {
+    background-color: #7ac142 !important;
+    border-color: #7ac142 !important;
+    font-weight: 600 !important;
+    height: 48px !important;
+    padding: 0 32px !important;
+    font-size: 16px !important;
+    text-transform: uppercase;
+  }
+  
+  .get-started-btn:hover {
+    background-color: #68a939 !important;
+    border-color: #68a939 !important;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 36px !important;
+    }
+  
+    .hero-subtitle {
+      font-size: 16px !important;
+    }
+  
+    .hero-section {
+      min-height: 500px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 28px !important;
+    }
+  
+    .hero-content {
+      padding: 0 16px;
+    }
+  }
+  
+  

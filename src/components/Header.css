@@ -1,0 +1,82 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.header-scrolled {
+  background-color: #373737;
+}
+
+.header-scrolled .logo-text {
+  color: #fff;
+}
+
+.header-scrolled .ant-menu {
+  background-color: transparent;
+  color: #fff;
+}
+
+.header-scrolled .ant-menu-item {
+  color: #fff !important;
+}
+
+.header-scrolled .ant-menu-title-content {
+  color: #fff;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 24px;
+  margin-right: 8px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4caf50 !important;
+  transition: color 0.3s ease;
+}
+
+.menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  border-bottom: none;
+  background: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.ant-menu-item {
+  color: #666;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.login-button {
+  background-color: #4caf50;
+  border-color: #4caf50;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 4px;
+  padding: 0 16px;
+}
+
+.login-button:hover {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
