@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Row, Col, Typography, Divider, Space } from 'antd';
 import { FacebookOutlined, TwitterOutlined, InstagramOutlined, HeartOutlined } from '@ant-design/icons';
-
+import Biteology from "../assets/logo.png";
 const { Footer } = Layout;
 const { Title, Text, Link } = Typography;
 
@@ -29,19 +29,18 @@ const FooterComponent: React.FC = () => {
             >
               <div
                 style={{
-                  backgroundColor: '#52C41A', // Green background for logo
-                  width: 40,
-                  height: 40,
+                  width: 30,
+                  height: 30,
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   borderRadius: 4,
                 }}
               >
-                <HeartOutlined style={{ color: '#FFFFFF', fontSize: 24 }} />
+                <img src={Biteology} alt="Biteology Logo" className="logo-image" style={{ width: '100%', height: '100%' }}/>
               </div>
               <Title level={4} style={{ margin: 0, color: '#333333' }}>
-                B!teology
+                Biteology
               </Title>
             </div>
             <Text style={{ color: '#666666' }}>Healthy Bites - Healthy Life</Text>

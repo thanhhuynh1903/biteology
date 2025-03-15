@@ -1,47 +1,49 @@
-"use client";
+import type React from "react"
+import { useState, useEffect } from "react"
+import { Layout, Menu, Button, Dropdown, Badge, Space } from "antd"
+import { LoginOutlined, DownOutlined, MenuOutlined, CloseOutlined } from "@ant-design/icons"
+import { Link, useNavigate } from "react-router-dom"
+import "./Header.css"
+import biteologo  from "../assets/logo.png";
 
-import type React from "react";
-import { Layout, Menu, Button, Dropdown, Badge, Space } from "antd";
-import { LoginOutlined, DownOutlined } from "@ant-design/icons";
-import "./Header.css";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import Link from "antd/es/typography/Link";
-const { Header } = Layout;
+const { Header } = Layout
 
-const HeaderComponent: React.FC = () => {
-  const navigate = useNavigate();
-  const [scrolled, setScrolled] = useState(false);
+interface HeaderProps {
+  logo: string // Path to logo image
+}
+
+const HeaderComponent: React.FC<HeaderProps> = ({ logo }) => {
+  const navigate = useNavigate()
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY;
+      const offset = window.scrollY
       if (offset > 50) {
-        setScrolled(true);
+        setScrolled(true)
       } else {
-        setScrolled(false);
+        setScrolled(false)
       }
-    };
+    }
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll)
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   const menuItems = [
-    {
-      key: "home",
-      label: "Home",
-      route: "",
-    },
     {
       key: "join",
       label: "Join a Trial",
       route: "payment",
     },
-
+    {
+      key: "sites",
+      label: "Sites & Sponsors",
+    },
     {
       key: "unify",
       label: (
@@ -60,34 +62,60 @@ const HeaderComponent: React.FC = () => {
           />
         </Space>
       ),
-      route: "medical",
     },
     {
       key: "about",
       label: "About HealthMatch",
     },
-  ];
+  ]
+
+  const handleMenuClick = ({ key }: { key: string }) => {
+    const item = menuItems.find((m) => m.key === key)
+    if (item?.route) {
+      navigate(`/${item.route}`)
+    }
+    setMobileMenuOpen(false)
+  }
 
   return (
     <Header className={`header ${scrolled ? "header-scrolled" : ""}`}>
       <div className="logo-container">
-        <span className="logo-text">
-          <Link href="/" className="logo-text">
-            Biteology
-          </Link>
-        </span>
+        <div
+          style={{
+            width: 28,
+            height: 28,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 4,
+          }}
+        >
+          <img
+            src={biteologo}
+            alt="Biteology Logo"
+            className="logo-image"
+            style={{ width: "100%", height: "100%" }}
+          />
+        </div>
+        <Link to="/" className="logo-text">
+          Biteology
+        </Link>
       </div>
 
-      <Menu
-        mode="horizontal"
-        items={menuItems}
-        className="menu"
-        selectedKeys={[]}
-        onClick={({ key }) => {
-          const item = menuItems.find((m) => m.key === key);
-          navigate(item?.route === "" ? "/" : `/${item?.route}`);
-        }}
-      />
+      {/* Mobile Menu Button */}
+      <button className="mobile-menu-button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        {mobileMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
+      </button>
+
+      {/* Desktop Menu */}
+      <Menu mode="horizontal" items={menuItems} className="menu" selectedKeys={[]} onClick={handleMenuClick} />
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu">
+          <Menu mode="vertical" items={menuItems} onClick={handleMenuClick} />
+        </div>
+      )}
 
       <Dropdown
         menu={{
@@ -105,7 +133,8 @@ const HeaderComponent: React.FC = () => {
         </Button>
       </Dropdown>
     </Header>
-  );
-};
+  )
+}
 
-export default HeaderComponent;
+export default HeaderComponent
+

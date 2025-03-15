@@ -16,6 +16,12 @@
   background-color: #373737;
 }
 
+.logo-image {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
 .header-scrolled .logo-text {
   color: #fff;
 }
@@ -78,5 +84,113 @@
 .login-button:hover {
   background-color: #4caf50;
   border-color: #4caf50;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    padding: 0 20px;
+  }
+
+  .menu {
+    justify-content: flex-end;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .logo-text {
+    font-size: 16px;
+  }
+
+  .logo-image {
+    width: 40px;
+  }
+
+  .login-button {
+    padding: 0 12px;
+  }
+
+  .login-button span {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    padding: 0 12px;
+  }
+
+  .logo-container {
+    flex-shrink: 0;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  /* Add a mobile menu button that appears on small screens */
+  .mobile-menu-button {
+    display: block;
+    margin-left: auto;
+    margin-right: 16px;
+  }
+
+  /* Style for mobile dropdown menu */
+  .mobile-menu {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+
+  .header-scrolled .mobile-menu {
+    background-color: #373737;
+  }
+}
+
+/* Add a class for the mobile menu button */
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: #4caf50;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.header-scrolled .mobile-menu-button {
+  color: #fff;
+}
+
+/* Add styles for when the mobile menu is open */
+.mobile-menu-open {
+  height: auto;
+}
+
+/* Ensure the logo stays visible */
+@media (max-width: 400px) {
+  .logo-text {
+    font-size: 14px;
+  }
+
+  .logo-image {
+    width: 32px;
+    margin-right: 6px;
+  }
 }
 

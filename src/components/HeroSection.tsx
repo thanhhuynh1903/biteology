@@ -15,8 +15,10 @@ const HeroSection: React.FC = () => {
           Every Moment
         </Title>
         <Paragraph className="hero-subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          We're on a mission to accelerate medical breakthroughs by making
+          clinical trials more accessible to everyone. Through our platform,
+          we're bridging the gap between innovative research and the people who
+          need it most.
         </Paragraph>
         <Button type="primary" size="large" className="get-started-btn">
           GET STARTED

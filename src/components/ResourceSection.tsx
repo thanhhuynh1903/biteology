@@ -1,33 +1,23 @@
-import React from "react";
-import { Row, Col, Card, Typography } from "antd";
-import {
-  QuestionCircleOutlined,
-  BookOutlined,
-  FileOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
-import { CSSProperties } from "react";
+import type React from "react"
+import { Row, Col, Card, Typography } from "antd"
+import { QuestionCircleOutlined, BookOutlined, FileOutlined, EditOutlined } from "@ant-design/icons"
 
-const { Title, Text } = Typography;
+const { Title, Text } = Typography
 
 // Define the props interface for the ResourceCard component
 interface ResourceCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+  icon: React.ReactNode
+  title: string
+  description: string
 }
 
 // ResourceCard component
-const ResourceCard: React.FC<ResourceCardProps> = ({
-  icon,
-  title,
-  description,
-}) => {
-
+const ResourceCard: React.FC<ResourceCardProps> = ({ icon, title, description }) => {
   return (
     <Card
       style={{
-        width: "100%",
+        width: "250px",
+        minWidth:"100%",
         height: "100%",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         borderRadius: 8,
@@ -57,15 +47,13 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
           {icon}
         </div>
       </div>
-      <Title level={1} style={{ marginBottom: 8, textAlign: "center",fontSize:"20px" }}>
+      <Title level={1} style={{ marginBottom: 8, textAlign: "center", fontSize: "20px" }}>
         {title}
       </Title>
-      <Text style={{ margin: "auto 0", display: "block", fontSize: "16px" }}>
-        {description}
-      </Text>
+      <Text style={{ margin: "auto 0", display: "block", fontSize: "16px" }}>{description}</Text>
     </Card>
-  );
-};
+  )
+}
 
 // ResourceSection component
 const ResourceSection: React.FC = () => {
@@ -74,8 +62,7 @@ const ResourceSection: React.FC = () => {
     {
       icon: <QuestionCircleOutlined />,
       title: "FAQs",
-      description:
-        "Find answers to common questions about clinical trials, participation process, and what to expect.",
+      description: "Find answers to common questions about clinical trials, participation process, and what to expect.",
     },
     {
       icon: <BookOutlined />,
@@ -95,12 +82,14 @@ const ResourceSection: React.FC = () => {
       description:
         "Stay updated with the latest insights, research news, and patient stories from our clinical trial community.",
     },
-  ];
+  ]
 
   return (
     <div
       style={{
         padding: "40px 20px",
+        maxWidth: "1200px",
+        margin: "0 auto",
       }}
     >
       <Title
@@ -120,18 +109,18 @@ const ResourceSection: React.FC = () => {
           color: "#666", // Slightly gray for subtitle
         }}
       >
-        Comprehensive guides and information to help you make informed
-        decisions.
+        Comprehensive guides and information to help you make informed decisions.
       </Text>
-      <Row gutter={[16, 16]} justify="center">
+      <Row gutter={[16, 16]} justify="space-between">
         {resources.map((resource, index) => (
-          <Col span={5} key={index}>
+          <Col xs={24} sm={12} md={8} lg={6} xl={5} key={index}>
             <ResourceCard {...resource} />
           </Col>
         ))}
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default ResourceSection;
+export default ResourceSection
+
