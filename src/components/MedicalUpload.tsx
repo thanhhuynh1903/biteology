@@ -92,7 +92,7 @@ const MedicalUpload: React.FC = () => {
           <p className="ant-upload-drag-icon" style={{ marginTop: 40 }}>
             <CloudUploadOutlined style={{ fontSize: 48 }} />
           </p>
-          <p className="ant-upload-text">Upload MRI Images</p>
+          <p className="ant-upload-text">Upload Medical Images</p>
           <p style={{ marginBottom: 40 }}></p>
         </Dragger>
         <Button
