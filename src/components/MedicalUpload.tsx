@@ -59,7 +59,7 @@ const MedicalUpload: React.FC = () => {
       <Row gutter={[16, 16]}>
         {statusCards.map((card, index) => (
           <Col xs={24} md={8} key={index}>
-            <Card bodyStyle={{ padding: 16 }}>
+            <Card bodyStyle={{ padding: 16,height:"180px",minHeight:"100%",maxHeight:"100%" }}>
               <Space direction="vertical" style={{ width: "100%" }} size={12}>
                 <Space align="center" style={{ width: "100%", justifyContent: "space-between" }}>
                   <Text strong>{card.title}</Text>
