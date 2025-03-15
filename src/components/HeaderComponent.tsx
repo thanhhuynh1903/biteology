@@ -19,7 +19,7 @@ const HeaderComponent: React.FC<any> = ({}) => {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const caCode = "CA213n123nVHGJVGJKH67b3n4j5k"; 
+  const caCode = "XXXXXXXXXXXXXXXXXXXXXXXX"; 
 
   useEffect(() => {
     const handleScroll = () => {
