@@ -16,7 +16,7 @@ interface PricingPlan {
   features: string[];
   action: {
     text: string;
-    type: "" | "default";
+    type: "" | "default" | "primary";
   };
 }
 
