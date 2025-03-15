@@ -8,11 +8,8 @@ import biteologo  from "../assets/logo.png";
 
 const { Header } = Layout
 
-interface HeaderProps {
-  logo: string // Path to logo image
-}
 
-const HeaderComponent: React.FC<HeaderProps> = ({ logo }) => {
+const HeaderComponent: React.FC<any> = ({ }) => {
   const navigate = useNavigate()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -36,13 +33,14 @@ const HeaderComponent: React.FC<HeaderProps> = ({ logo }) => {
 
   const menuItems = [
     {
+      key: "home",
+      label: "Home",
+      route: "",
+    },
+    {
       key: "join",
       label: "Join a Trial",
       route: "payment",
-    },
-    {
-      key: "sites",
-      label: "Sites & Sponsors",
     },
     {
       key: "unify",
@@ -62,6 +60,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({ logo }) => {
           />
         </Space>
       ),
+      route: "medical"
     },
     {
       key: "about",
@@ -71,9 +70,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({ logo }) => {
 
   const handleMenuClick = ({ key }: { key: string }) => {
     const item = menuItems.find((m) => m.key === key)
-    if (item?.route) {
-      navigate(`/${item.route}`)
-    }
+    navigate(item?.route === "" ? "/" : `/${item?.route}`);  
     setMobileMenuOpen(false)
   }
 

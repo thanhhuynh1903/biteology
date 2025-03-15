@@ -16,7 +16,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ icon, title, description })
   return (
     <Card
       style={{
-        width: "250px",
+        width: "100%",
         minWidth:"100%",
         height: "100%",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
@@ -111,9 +111,9 @@ const ResourceSection: React.FC = () => {
       >
         Comprehensive guides and information to help you make informed decisions.
       </Text>
-      <Row gutter={[16, 16]} justify="space-between">
+      <Row gutter={[16, 16]} justify="space-around">
         {resources.map((resource, index) => (
-          <Col xs={24} sm={12} md={8} lg={6} xl={5} key={index}>
+          <Col xs={24} sm={12} md={8} lg={6} xl={6} key={index}>
             <ResourceCard {...resource} />
           </Col>
         ))}

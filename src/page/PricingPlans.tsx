@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Typography, Card, Switch, Button, List } from "antd";
 import { CheckCircleFilled, AppstoreOutlined } from "@ant-design/icons";
 import FooterComponent from "../components/Footer";
-import ConfigProvider from "antd";
 import "./PricingPlans.css";
 import HeaderComponent from "../components/HeaderComponent";
 const { Title, Text, Paragraph } = Typography;

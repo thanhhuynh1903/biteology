@@ -1,4 +1,3 @@
-import React from "react";
 import MedicalUpload from "../components/MedicalUpload";
 import HeaderComponent from "../components/HeaderComponent";
 import FooterComponent from "../components/Footer";
