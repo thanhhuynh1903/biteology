@@ -10,22 +10,22 @@ const { Title, Text } = Typography
 const MedicalUpload: React.FC = () => {
   const statusCards = [
     {
-      title: "Tumor Detection",
+      title: "Nutrient Tracking 📊",
       progress: 50,
-      description: "SLAID believes this might a 85% BAD from a 25% BAD Test",
+      description: "🥦 Monitor your meals and track calories, macronutrients, and vitamins with AI-powered insights",
       status: "success",
     },
     {
-      title: "BigchainDB",
+      title: "Personalized Meal Plans 🍽️",
       progress: 50,
-      description: "Please wait until we get a BigchainDB node or connect to an existing BigchainDB network.",
+      description: "🔹 Tailored meal recommendations based on your health goals, dietary preferences, and nutritional needs.",
       status: "active",
     },
     {
-      title: "Self Diagnose",
+      title: "AI Health Alerts ⚠️",
       progress: 100,
       description:
-        "As soon as possible, we are working intensely to develop the most advanced AI for disease diagnosis",
+        "🚀 Get real-time warnings about potential nutritional imbalances and optimize your diet proactively.",
       status: "success",
     },
   ]
