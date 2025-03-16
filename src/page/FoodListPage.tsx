@@ -1,16 +1,17 @@
 import type React from "react";
 import { useState, useEffect } from "react";
 import { Typography, Row, Col, Card, Spin } from "antd";
-
 import "./FoodListPage.css";
 import HeaderComponent from "../components/HeaderComponent";
 import FilterTabs from "../components/FilterTabs";
 import ModalPoppup from "../components/ModalPoppup";
 import FooterComponent from "../components/Footer";
+
 const { Title, Text } = Typography;
 
 interface FoodItem {
   id: number;
+  title:string;
   name: string;
   ingredients: string;
   price: number;
@@ -23,62 +24,91 @@ const FoodListPage: React.FC = () => {
   const [selectedFood, setSelectedFood] = useState<any | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<FoodItem[]>([]);
+  // const foodItems: FoodItem[] = [
+  //   {
+  //     id: 1,
+  //     name: "MASALA-SPICED CHICKPEAS",
+  //     ingredients: "Pork meat, Sauces, Potato",
+  //     price: 14,
+  //     image:
+  //       "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/4/26/0/HE_kwon-Ground-Turkey-Enchilada-Stir-Fry-with-Couscous_s4x3.jpg.rend.hgtvcom.1280.1280.85.suffix/1461695054811.webp",
+  //     isNew: true,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "KUNG PAO PASTRAMI",
+  //     ingredients: "Cheese, Garlic, Potato, Pork",
+  //     price: 12,
+  //     image:
+  //       "https://www.safetyandhealthmagazine.com/ext/resources/images/news/wellness/heart-healthy.jpg?t=1678225097&width=768",
+  //     isNew: true,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "JALAPENO-MANGO SALSA",
+  //     ingredients: "Mango, Rice, Jalapeno",
+  //     price: 45,
+  //     image:
+  //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOm7u5Y7wrwkvaz_9Qm2ZiMInD-69PUfV7AUjA1zAVLhSMMmGds7rNiv-4lEV5_3eWjMk&usqp=CAU",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "SPICY FRIED RICE & BACON",
+  //     ingredients: "Bacon, Rice, Vegetables",
+  //     price: 38,
+  //     image:
+  //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd7TNkUzWI9qpC_KQykcOXyAn3E0lmzH9m4EJYsMmuVIVnL2XiCUqX3tgf_N5unTQtjjg&usqp=CAU",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "SHRIMP CURRY",
+  //     ingredients: "Shrimp, Vegetables, Sauce",
+  //     price: 55,
+  //     image:
+  //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoFAU_hV5e7b2j8fug6qHBzONPHxCJrEZZnn5BfeDjYPkU1FNkKWwxcEyMDVq018fiOaE&usqp=CAU",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "CHICKEN DORO WAT",
+  //     ingredients: "Chicken, Potato, Salad",
+  //     price: 23,
+  //     image:
+  //       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzpLPdZ1UZxWJnDGpsJz6KJQrAbhnMYnJZvZjyiaTj-Yepa8CRpUaXp5fmRT0_YCxWewc&usqp=CAU",
+  //   },
+  // ];
 
-  const foodItems: FoodItem[] = [
-    {
-      id: 1,
-      name: "MASALA-SPICED CHICKPEAS",
-      ingredients: "Pork meat, Sauces, Potato",
-      price: 14,
-      image:
-        "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2016/4/26/0/HE_kwon-Ground-Turkey-Enchilada-Stir-Fry-with-Couscous_s4x3.jpg.rend.hgtvcom.1280.1280.85.suffix/1461695054811.webp",
-      isNew: true,
-    },
-    {
-      id: 2,
-      name: "KUNG PAO PASTRAMI",
-      ingredients: "Cheese, Garlic, Potato, Pork",
-      price: 12,
-      image:
-        "https://www.safetyandhealthmagazine.com/ext/resources/images/news/wellness/heart-healthy.jpg?t=1678225097&width=768",
-      isNew: true,
-    },
-    {
-      id: 3,
-      name: "JALAPENO-MANGO SALSA",
-      ingredients: "Mango, Rice, Jalapeno",
-      price: 45,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOm7u5Y7wrwkvaz_9Qm2ZiMInD-69PUfV7AUjA1zAVLhSMMmGds7rNiv-4lEV5_3eWjMk&usqp=CAU",
-    },
-    {
-      id: 4,
-      name: "SPICY FRIED RICE & BACON",
-      ingredients: "Bacon, Rice, Vegetables",
-      price: 38,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd7TNkUzWI9qpC_KQykcOXyAn3E0lmzH9m4EJYsMmuVIVnL2XiCUqX3tgf_N5unTQtjjg&usqp=CAU",
-    },
-    {
-      id: 5,
-      name: "SHRIMP CURRY",
-      ingredients: "Shrimp, Vegetables, Sauce",
-      price: 55,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoFAU_hV5e7b2j8fug6qHBzONPHxCJrEZZnn5BfeDjYPkU1FNkKWwxcEyMDVq018fiOaE&usqp=CAU",
-    },
-    {
-      id: 6,
-      name: "CHICKEN DORO WAT",
-      ingredients: "Chicken, Potato, Salad",
-      price: 23,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzpLPdZ1UZxWJnDGpsJz6KJQrAbhnMYnJZvZjyiaTj-Yepa8CRpUaXp5fmRT0_YCxWewc&usqp=CAU",
-    },
-  ];
+  const handleFetchAPI = async (retryCount = 0) => {
+    try {
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${import.meta.env.VITE_API_KEY}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      const data = await response.json();
+      const limitedData = data.results.slice(0, 10); // results is the array
+      console.log("limitedData", limitedData);
+      
+      setData(limitedData);
+    } catch (error) {
+      if (retryCount < 5) {
+        // Thử lại tối đa 5 lần
+        const delay = Math.pow(2, retryCount) * 1000; // Exponential backoff delay
+        setTimeout(() => {
+          handleFetchAPI(retryCount + 1);
+        }, delay);
+      } else {
+        return <div>Fail to Load !!</div>;
+      }
+    }
+  };
 
   useEffect(() => {
     // Simulate data fetching
+    handleFetchAPI(0);
+    console.log("data", data);
     setTimeout(() => {
       setLoading(false);
     }, 800); // Adjust the delay as needed
@@ -112,7 +142,7 @@ const FoodListPage: React.FC = () => {
             <FilterTabs />
           </div>
           <Row gutter={[24, 24]}>
-            {foodItems.map((item) => {
+            {data.map((item) => {
               return (
                 <Col xs={24} sm={12} md={6} key={item.id}>
                   <Card
@@ -137,7 +167,7 @@ const FoodListPage: React.FC = () => {
                   >
                     <div style={{ marginTop: "1%" }}>
                       <Title level={5} className="food-name">
-                        {item.name}
+                        {item?.title}
                       </Title>
                       <Text className="food-ingredients">
                         {item.ingredients}
@@ -161,7 +191,7 @@ const FoodListPage: React.FC = () => {
           }}
         />
       )}
-      <FooterComponent/>
+      <FooterComponent />
     </>
   );
 };

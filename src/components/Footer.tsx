@@ -80,11 +80,11 @@ const FooterComponent: React.FC = () => {
             Social
           </Title>
           <Space size="large">
-            <FacebookOutlined style={{ fontSize: 24, color: '#333333' }} />
-            <XOutlined style={{ fontSize: 23, color: '#333333' }} />
-            <InstagramOutlined style={{ fontSize: 24, color: '#333333' }} />
-            <PhoneOutlined style={{ fontSize: 24, color: '#333333' }} />
-            <BookOutlined style={{ fontSize: 24, color: '#333333' }} />
+            <FacebookOutlined style={{ fontSize: 24, color: '#333333' }} href=''/>
+            <XOutlined style={{ fontSize: 23, color: '#333333' }}  onClick={() => window.open('https://x.com/BiteologyHealth')}/>
+            <InstagramOutlined style={{ fontSize: 24, color: '#333333' }}  onClick={() => window.open('https://www.instagram.com/biteology_health')}/>
+            <PhoneOutlined style={{ fontSize: 24, color: '#333333' }} onClick={() => window.open('https://t.me/biteology_health')} />
+            <BookOutlined style={{ fontSize: 24, color: '#333333' }}  onClick={() => window.open('https://biteologys-team.gitbook.io/biteology-docs')}/>
           </Space>
         </Col>
       </Row>
