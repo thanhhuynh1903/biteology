@@ -119,7 +119,11 @@
   }
   
   .food-ingredients {
-    color: rgba(38, 36, 36, 0.6) !important;
+    color: #000 !important;
+    font-size: 14px !important;
+  }
+  .food-process {
+    color: #000 !important;
     font-size: 14px !important;
   }
   

@@ -1,31 +1,42 @@
-import { useState } from "react";
+import React from "react";
 import { Button, Space } from "antd";
 
+interface FilterTabsProps {
+  selectedCountry: string;
+  onSelectCountry: (country: string) => void;
+}
+
 const categories = [
-  { key: "all", label: "All" },
-  { key: "heart", label: "Heart" },
-  { key: "obesity", label: "Obesity" },
-  { key: "diabetes", label: "Diabetes" },
-  { key: "hypertension", label: "Hypertension" },
+  { key: "Vietnamese", label: "Vietnamese" },
+  { key: "French", label: "French" },
+  { key: "German", label: "German" },
+  { key: "Greek", label: "Greek" },
+  { key: "American", label: "American" },
+  { key: "Japanese", label: "Japanese" },
+  { key: "Korean", label: "Korean" },
 ];
 
-const FilterTabs: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<string>("all");
-
+const FilterTabs: React.FC<FilterTabsProps> = ({
+  selectedCountry,
+  onSelectCountry,
+}) => {
   return (
     <Space style={{ flexWrap: "wrap" }}>
       {categories.map((category) => (
         <Button
           key={category.key}
-          type={activeFilter === category.key ? "primary" : "default"}
+          type={selectedCountry === category.key ? "primary" : "default"}
           shape="round"
           size="large"
-          onClick={() => setActiveFilter(category.key)}
+          onClick={() => onSelectCountry(category.key)}
           style={{
-            backgroundColor: activeFilter === category.key ? "#4CAF50" : "#fff",
-            color: activeFilter === category.key ? "#fff" : "#333",
-            borderColor: activeFilter === category.key ? "#4CAF50" : "#ddd",
-            fontWeight: activeFilter === category.key ? "bold" : "normal",
+            backgroundColor:
+              selectedCountry === category.key ? "#4CAF50" : "#fff",
+            color: selectedCountry === category.key ? "#fff" : "#333",
+            borderColor:
+              selectedCountry === category.key ? "#4CAF50" : "#ddd",
+            fontWeight:
+              selectedCountry === category.key ? "bold" : "normal",
           }}
         >
           {category.label}

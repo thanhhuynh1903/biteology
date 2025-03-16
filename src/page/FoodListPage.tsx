@@ -11,7 +11,7 @@ const { Title, Text } = Typography;
 
 interface FoodItem {
   id: number;
-  title:string;
+  title: string;
   name: string;
   ingredients: string;
   price: number;
@@ -21,6 +21,8 @@ interface FoodItem {
 }
 
 const FoodListPage: React.FC = () => {
+  const [country, setCountry] = useState<string>("Vietnamese");
+
   const [selectedFood, setSelectedFood] = useState<any | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
@@ -78,10 +80,10 @@ const FoodListPage: React.FC = () => {
   //   },
   // ];
 
-  const handleFetchAPI = async (retryCount = 0) => {
+  const handleFetchAPI = async (retryCount = 0, cuisineParam = country) => {
     try {
       const response = await fetch(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${import.meta.env.VITE_API_KEY}`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=1733c938295b4af4809740273e9a2d41&minCarbs=10&maxCarbs=50&fillIngredients=true&instructionsRequired=true&cuisine=${cuisineParam}`
       );
 
       if (!response.ok) {
@@ -90,10 +92,10 @@ const FoodListPage: React.FC = () => {
       const data = await response.json();
       const limitedData = data.results.slice(0, 10); // results is the array
       console.log("limitedData", limitedData);
-      
+
       setData(limitedData);
     } catch (error) {
-      if (retryCount < 5) {
+      if (retryCount < 1) {
         // Thử lại tối đa 5 lần
         const delay = Math.pow(2, retryCount) * 1000; // Exponential backoff delay
         setTimeout(() => {
@@ -102,25 +104,16 @@ const FoodListPage: React.FC = () => {
       } else {
         return <div>Fail to Load !!</div>;
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    // Simulate data fetching
-    handleFetchAPI(0);
-    console.log("data", data);
-    setTimeout(() => {
-      setLoading(false);
-    }, 800); // Adjust the delay as needed
-  }, []);
+    setLoading(true); // Show spinner each time user switches country
+    handleFetchAPI(0, country);
+  }, [country]);
 
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <Spin size="large" />
-      </div>
-    );
-  }
   return (
     <>
       <HeaderComponent />
@@ -136,53 +129,62 @@ const FoodListPage: React.FC = () => {
             </Text>
           </div>
         </div>
-
-        <div className="food-grid" style={{ marginTop: "2%" }}>
-          <div style={{ marginBottom: "2%" }}>
-            <FilterTabs />
+        {loading ? (
+          <div className="loading-container">
+            <Spin size="large" />
           </div>
-          <Row gutter={[24, 24]}>
-            {data.map((item) => {
-              return (
-                <Col xs={24} sm={12} md={6} key={item.id}>
-                  <Card
-                    className="food-card"
-                    cover={
-                      <div className="food-image-container">
-                        <img
-                          alt={item.name}
-                          src={item.image || "/placeholder.svg"}
-                          className="food-image"
-                        />
-                        {/* <div className="price-tag">${item.price}</div> */}
-                        {/* {item.isNew && <div className="new-tag">NEW</div>}
+        ) : (
+          <div className="food-grid" style={{ marginTop: "2%" }}>
+            <div style={{ marginBottom: "2%" }}>
+              <FilterTabs
+                selectedCountry={country}
+                onSelectCountry={(val) => setCountry(val)}
+              />
+            </div>
+            <Row gutter={[24, 24]}>
+              {data.map((item) => {
+                return (
+                  <Col xs={24} sm={12} md={6} key={item.id}>
+                    <Card
+                      className="food-card"
+                      cover={
+                        <div className="food-image-container">
+                          <img
+                            alt={item.name}
+                            src={item.image || "/placeholder.svg"}
+                            className="food-image"
+                          />
+                          {/* <div className="price-tag">${item.price}</div> */}
+                          {/* {item.isNew && <div className="new-tag">NEW</div>}
                     {item.isRecommended && <div className="recommended-tag">Recommended</div>} */}
-                      </div>
-                    }
-                    bordered={false}
-                    onClick={() => {
-                      setSelectedFood(item);
-                      setIsModalOpen(true);
-                    }}
-                  >
-                    <div style={{ marginTop: "1%" }}>
-                      <Title level={5} className="food-name">
-                        {item?.title}
-                      </Title>
-                      <Text className="food-ingredients">
+                        </div>
+                      }
+                      bordered={false}
+                      onClick={() => {
+                        setSelectedFood(item);
+                        setIsModalOpen(true);
+                      }}
+                    >
+                      <div style={{ marginTop: "1%" }}>
+                        <Title level={5} className="food-name">
+                          {item?.title}
+                        </Title>
+                        {/* <Text className="food-ingredients">
                         {item.ingredients}
-                      </Text>
-                    </div>
-                    {/* <ModalPoppup foodid=""/> */}
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
-        </div>
+                      </Text> */}
+                      </div>
+                      {/* <ModalPoppup foodid=""/> */}
+                    </Card>
+                  </Col>
+                );
+              })}
+            </Row>
+          </div>
+        )}
       </div>
       {selectedFood && (
         <ModalPoppup
+          country={country}
           food={selectedFood}
           open={isModalOpen}
           onClose={() => {

@@ -3,18 +3,16 @@ import { Modal, Typography } from "antd";
 import TagFood from "./TagFood";
 const { Title, Text } = Typography;
 interface ModalPoppupProps {
+  country: string;
   food: any;
   open: boolean;
   onClose: () => void;
 }
 
-const ModalPoppup: React.FC<ModalPoppupProps> = ({ food, open, onClose }) => {
-    const tags = [
-      "Béo phì",
-      "Bệnh tim mạch",
-    ]
+const ModalPoppup: React.FC<ModalPoppupProps> = ({country, food, open, onClose }) => {
+console.log("country",country)
   return (
-    <Modal title={food.name} open={open} onCancel={onClose} footer={null}>
+    <Modal title={food.title} open={open} onCancel={onClose} footer={null}>
       <div style={{ paddingLeft: "0 !important", paddingRight: 0 }}>
         <div className="food-image-container" style={{ borderRadius: "15px" }}>
           <img
@@ -24,23 +22,36 @@ const ModalPoppup: React.FC<ModalPoppupProps> = ({ food, open, onClose }) => {
           />
         </div>
       </div>
-      <div style={{margin:"15px 0px"}}>
+      <div style={{ margin: "15px 0px" }}>
         <Title level={5} className="food-name">
-          Mô tả:
+          Ingredients:
         </Title>
         <Text className="food-ingredients">
-          Thịt ức gà ít mỡ, giàu protein tốt cho người béo phì.
+          {food.missedIngredients.map((ingredient: any) => (
+            <span key={ingredient.id}>
+              {ingredient.name.charAt(0).toUpperCase() +
+                ingredient.name.slice(1)}
+               , {" "}
+            </span>
+          ))}
         </Text>
         <Title level={5} className="food-name">
-          Công thức:
+        Processing capacity:
         </Title>
-        <Text className="food-ingredients">{food.ingredients}</Text>
+        <Text className="food-process">
+        {food.missedIngredients.map((ingredient: any) => (
+            <p key={ingredient.id} style={{margin:"0px !important"}}>
+              - {ingredient.original}
+               , {" "}
+            </p>
+          ))}
+        </Text>
+        
         <Title level={5} className="food-name">
-        Phù hợp với:
-
+          Food Country:
         </Title>
         <Text className="food-ingredients">
-        <TagFood foodtag={tags}/>
+          <TagFood foodtag={country} />
         </Text>
       </div>
     </Modal>
