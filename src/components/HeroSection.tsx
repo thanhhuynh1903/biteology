@@ -1,10 +1,11 @@
 import type React from "react";
 import { Button, Typography } from "antd";
 import "./HeroSection.css";
-
+import { useNavigate } from "react-router-dom";
 const { Title, Paragraph } = Typography;
 
 const HeroSection: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="hero-section">
       <div className="hero-overlay"></div>
@@ -20,7 +21,7 @@ const HeroSection: React.FC = () => {
           we're bridging the gap between innovative research and the people who
           need it most.
         </Paragraph>
-        <Button type="primary" size="large" className="get-started-btn">
+        <Button type="primary" size="large" className="get-started-btn" onClick={() => navigate("/food")}>
           GET STARTED
         </Button>
         
