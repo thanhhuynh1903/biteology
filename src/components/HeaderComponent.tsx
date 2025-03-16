@@ -56,7 +56,7 @@ const HeaderComponent: React.FC<any> = ({}) => {
       ),
       route: "medical",
     },
-    { key: "about", label: "About HealthMatch" },
+    { key: "Health library", label: "Health Library", route: "food" },
   ];
 
   const handleMenuClick = ({ key }: { key: string }) => {

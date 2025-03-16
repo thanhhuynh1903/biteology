@@ -26,12 +26,12 @@ export default function PricingPlans() {
   const plans: PricingPlan[] = [
     {
       icon: <AppstoreOutlined />,
-      title: "Free",
+      title: "Tier 1",
       label: "Started Plan",
       description: "Start with the basics and experience LostBag at no cost.",
-      monthlyPrice: 0,
+      monthlyPrice: 2,
       features: [
-        "Essential event management tools",
+        "2,000 token",
         "Basic analytics & reporting",
         "Up to 3 events per month",
         "Community Support",
@@ -43,13 +43,13 @@ export default function PricingPlans() {
     },
     {
       icon: <AppstoreOutlined />,
-      title: "Seedling",
+      title: "Tier 2",
       label: "Popular Plan",
       description:
         "Unlock advanced tools and premium support for seamless event management.",
-      monthlyPrice: 299,
+      monthlyPrice: 3.5,
       features: [
-        "Unlimited events",
+        "3,500 token",
         "AI-powered insights & recommendations",
         "Advanced budget tracking",
         "Priority support",
@@ -62,20 +62,20 @@ export default function PricingPlans() {
     },
     {
       icon: <AppstoreOutlined />,
-      title: "Enterprise",
+      title: "Tier 3",
       label: "Company Plan",
       description:
         "For teams that need custom solutions and dedicated support. Contact us for more info.",
-      monthlyPrice: 500,
+      monthlyPrice: 5,
       features: [
-        "Custom integrations",
+        "5,000 token",
         "Dedicated account manager",
         "Advanced security & compliance",
         "API access for automation",
         "VIP onboarding & training",
       ],
       action: {
-        text: "Contact Us",
+        text: "Select Plan",
         type: "default",
       },
     },
@@ -125,12 +125,11 @@ export default function PricingPlans() {
 
               <div className="price-container">
                 <Text className="price-amount">
-                  $
                   {isAnnual
                     ? (plan.monthlyPrice * 0.9).toFixed(0)
                     : plan.monthlyPrice}
                 </Text>
-                <Text className="price-period">/ month</Text>
+                <Text className="price-period">/ $BTO</Text>
               </div>
 
               <Text className="cancel-text">Pause and cancel anytime.</Text>
