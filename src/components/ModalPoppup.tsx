@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Typography, Card } from "antd";
+import React from "react";
+import { Modal, Typography } from "antd";
 import TagFood from "./TagFood";
 const { Title, Text } = Typography;
 interface ModalPoppupProps {
