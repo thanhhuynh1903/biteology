@@ -1,8 +1,9 @@
 import type React from "react";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { Typography, Card, Switch, Button, List } from "antd";
 import { CheckCircleFilled, AppstoreOutlined } from "@ant-design/icons";
 import FooterComponent from "../components/Footer";
+import { Spin } from "antd";
 import "./PricingPlans.css";
 import HeaderComponent from "../components/HeaderComponent";
 const { Title, Text, Paragraph } = Typography;
@@ -22,6 +23,7 @@ interface PricingPlan {
 
 export default function PricingPlans() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const plans: PricingPlan[] = [
     {
@@ -80,7 +82,20 @@ export default function PricingPlans() {
       },
     },
   ];
+  useEffect(() => {
+    // Simulate data fetching
+    setTimeout(() => {
+      setLoading(false);
+    }, 100); // Adjust the delay as needed
+  }, []);
 
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Spin size="large" />
+      </div>
+    );
+  }
   return (
     <div>
       <div>

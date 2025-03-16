@@ -15,7 +15,7 @@ export default function LandingPage() {
     // Simulate data fetching
     setTimeout(() => {
       setLoading(false);
-    }, 1000); // Adjust the delay as needed
+    }, 1500); // Adjust the delay as needed
   }, []);
 
   if (loading) {

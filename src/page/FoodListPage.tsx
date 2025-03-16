@@ -1,6 +1,7 @@
 import type React from "react";
-import { useState } from "react";
-import { Typography, Row, Col, Card } from "antd";
+import { useState,useEffect } from "react";
+import { Typography, Row, Col, Card, Spin } from "antd";
+
 import "./FoodListPage.css";
 import HeaderComponent from "../components/HeaderComponent";
 import FilterTabs from "../components/FilterTabs";
@@ -20,6 +21,7 @@ interface FoodItem {
 const FoodListPage: React.FC = () => {
   const [selectedFood, setSelectedFood] = useState<any | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState(true);
 
   const foodItems: FoodItem[] = [
     {
@@ -72,52 +74,23 @@ const FoodListPage: React.FC = () => {
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzpLPdZ1UZxWJnDGpsJz6KJQrAbhnMYnJZvZjyiaTj-Yepa8CRpUaXp5fmRT0_YCxWewc&usqp=CAU",
     },
-    // {
-    //   id: 7,
-    //   name: "KUNG PAO CHICKEN",
-    //   ingredients: "Chicken, Potato, Salad",
-    //   price: 46,
-    //   image: "/placeholder.svg?height=200&width=300",
-    //   isRecommended: true,
-    // },
-    // {
-    //   id: 8,
-    //   name: "MANGO-CHILE CHUTNEY",
-    //   ingredients: "Steak, Spices, Sauces",
-    //   price: 68,
-    //   image: "/placeholder.svg?height=200&width=300",
-    // },
-    // {
-    //   id: 9,
-    //   name: "SWEET & SPICY PORK",
-    //   ingredients: "Pork, Spices, Curry",
-    //   price: 67,
-    //   image: "/placeholder.svg?height=200&width=300",
-    //   isRecommended: true,
-    // },
-    // {
-    //   id: 10,
-    //   name: "FRUIT-VANILLA ICE CREAM",
-    //   ingredients: "Vanilla, Various Fruit, Cookies",
-    //   price: 25,
-    //   image: "/placeholder.svg?height=200&width=300",
-    // },
-    // {
-    //   id: 11,
-    //   name: "CHICKEN STEW",
-    //   ingredients: "Chicken, Vegetables, Eggs",
-    //   price: 15,
-    //   image: "/placeholder.svg?height=200&width=300",
-    // },
-    // {
-    //   id: 12,
-    //   name: "CHOCOLATE MACARONS",
-    //   ingredients: "Chocolate, Biscuits, Nougat",
-    //   price: 20,
-    //   image: "/placeholder.svg?height=200&width=300",
-    // },
+
   ];
 
+  useEffect(() => {
+    // Simulate data fetching
+    setTimeout(() => {
+      setLoading(false);
+    }, 800); // Adjust the delay as needed
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Spin size="large" />
+      </div>
+    );
+  }
   return (
     <>
       <HeaderComponent />

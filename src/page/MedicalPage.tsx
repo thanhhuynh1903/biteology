@@ -12,7 +12,7 @@ export default function MedicalPage() {
     // Simulate data fetching
     setTimeout(() => {
       setLoading(false);
-    }, 1000); // Adjust the delay as needed
+    }, 500); // Adjust the delay as needed
   }, []);
 
   if (loading) {
