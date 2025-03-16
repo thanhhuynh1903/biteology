@@ -1,0 +1,156 @@
+.food-list-container {
+    background-color: #FFFFFF;
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+  
+  .header-section {
+   position: relative;
+    height: 50vh;
+    min-height: 300px;
+    width: 100%;
+    background-image: url("https://www.oneeducation.org.uk/wp-content/uploads/2021/01/Healthy-Foods-to-Eat-Everyday.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .header-content{
+     position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 0 20px;
+  }
+  .main-title {
+    color: white !important;
+    margin-bottom: 16px !important;
+    font-size: 36px !important;
+  }
+  
+  .subtitle {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 16px !important;
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .food-grid {
+    padding: 0 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .food-card {
+    background-color: #FFFFFF !important;
+    border: 1px solid #e8e8e8 !important;
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  .food-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 280px;
+  }
+  
+  .food-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .food-card:hover .food-image {
+    transform: scale(1.05);
+  }
+  
+  .price-tag {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background-color: #ffd700;
+    color: #000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 2;
+  }
+  
+  .new-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #ffd700;
+    color: #000;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 2;
+  }
+  
+  .recommended-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #ffd700;
+    color: #000;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 2;
+  }
+  
+  
+  .food-name {
+    margin-top: 0px !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+  }
+  
+  .food-ingredients {
+    color: rgba(38, 36, 36, 0.6) !important;
+    font-size: 14px !important;
+  }
+  
+  @media (max-width: 768px) {
+    .food-grid {
+      padding: 0 20px;
+    }
+  
+    .header-section {
+      padding: 40px 20px;
+    }
+  
+    .main-title {
+      font-size: 28px !important;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .food-grid {
+      padding: 0 16px;
+    }
+  
+    .header-section {
+      padding: 30px 16px;
+    }
+  
+    .main-title {
+      font-size: 24px !important;
+    }
+  
+    .subtitle {
+      font-size: 14px !important;
+    }
+  }
+  
+  
