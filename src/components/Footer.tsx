@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Row, Col, Typography, Divider, Space } from 'antd';
-import { FacebookOutlined, TwitterOutlined, InstagramOutlined } from '@ant-design/icons';
+import { FacebookOutlined, XOutlined ,PhoneOutlined  ,InstagramOutlined,BookOutlined  } from '@ant-design/icons';
 import Biteology from "../assets/logo.png";
 const { Footer } = Layout;
 const { Title, Text, Link } = Typography;
@@ -81,8 +81,10 @@ const FooterComponent: React.FC = () => {
           </Title>
           <Space size="large">
             <FacebookOutlined style={{ fontSize: 24, color: '#333333' }} />
-            <TwitterOutlined style={{ fontSize: 24, color: '#333333' }} />
+            <XOutlined style={{ fontSize: 23, color: '#333333' }} />
             <InstagramOutlined style={{ fontSize: 24, color: '#333333' }} />
+            <PhoneOutlined style={{ fontSize: 24, color: '#333333' }} />
+            <BookOutlined style={{ fontSize: 24, color: '#333333' }} />
           </Space>
         </Col>
       </Row>

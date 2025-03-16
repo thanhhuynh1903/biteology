@@ -13,7 +13,7 @@ const FilterTabs: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("all");
 
   return (
-    <Space>
+    <Space style={{ flexWrap: "wrap" }}>
       {categories.map((category) => (
         <Button
           key={category.key}

@@ -1,6 +1,6 @@
 import type React from "react";
-import { useState ,useEffect} from "react";
-import { Typography, Card, Switch, Button, List } from "antd";
+import { useState, useEffect } from "react";
+import { Typography, Card, Button, List } from "antd";
 import { CheckCircleFilled, AppstoreOutlined } from "@ant-design/icons";
 import FooterComponent from "../components/Footer";
 import { Spin } from "antd";
@@ -9,6 +9,7 @@ import HeaderComponent from "../components/HeaderComponent";
 const { Title, Text, Paragraph } = Typography;
 
 interface PricingPlan {
+  tier: string;
   icon: React.ReactNode;
   title: string;
   label: string;
@@ -22,21 +23,22 @@ interface PricingPlan {
 }
 
 export default function PricingPlans() {
-  const [isAnnual, setIsAnnual] = useState(false);
+  // const [isAnnual, setIsAnnual] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const plans: PricingPlan[] = [
     {
+      tier: "Tier 1",
       icon: <AppstoreOutlined />,
-      title: "Tier 1",
+      title: "Basic",
       label: "Started Plan",
       description: "Start with the basics and experience LostBag at no cost.",
-      monthlyPrice: 2,
+      monthlyPrice: 2000,
       features: [
-        "2,000 token",
+        "Full access to basic features for 30 days",
         "Basic analytics & reporting",
-        "Up to 3 events per month",
-        "Community Support",
+        "Email Support",
+        "Limited to 10 nutrition consultations",
       ],
       action: {
         text: "Select Plan",
@@ -44,18 +46,19 @@ export default function PricingPlans() {
       },
     },
     {
+      tier: "Tier 2",
       icon: <AppstoreOutlined />,
-      title: "Tier 2",
+      title: "Standard",
       label: "Popular Plan",
       description:
         "Unlock advanced tools and premium support for seamless event management.",
-      monthlyPrice: 3.5,
+      monthlyPrice: 3500,
       features: [
-        "3,500 token",
+        "Full feature access for 90 days",
         "AI-powered insights & recommendations",
-        "Advanced budget tracking",
-        "Priority support",
-        "Team collaboration tools",
+        "Email and phone support",
+        "Limited to 30 nutrition consultations",
+        "Export health report",
       ],
       action: {
         text: "Select Plan",
@@ -63,18 +66,19 @@ export default function PricingPlans() {
       },
     },
     {
+      tier: "Tier 3",
       icon: <AppstoreOutlined />,
-      title: "Tier 3",
+      title: "High-class",
       label: "Company Plan",
       description:
         "For teams that need custom solutions and dedicated support. Contact us for more info.",
-      monthlyPrice: 5,
+      monthlyPrice: 5000,
       features: [
-        "5,000 token",
-        "Dedicated account manager",
-        "Advanced security & compliance",
-        "API access for automation",
-        "VIP onboarding & training",
+        "Full feature access for 150 days",
+        "24/7 Priority Support",
+        "Unlimited nutrition advice",
+        "Export health report",
+        "Consult directly with experts",
       ],
       action: {
         text: "Select Plan",
@@ -114,7 +118,7 @@ export default function PricingPlans() {
             <br />
             scaling up with advanced tools and premium support.
           </Paragraph>
-          <div className="billing-toggle">
+          {/* <div className="billing-toggle">
             <Text>Billed monthly</Text>
             <Switch
               checked={isAnnual}
@@ -123,7 +127,7 @@ export default function PricingPlans() {
             />
             <Text>Billed annually</Text>
             <Text className="save-tag">Save 10%</Text>
-          </div>
+          </div> */}
         </div>
 
         <div className="pricing-cards">
@@ -140,9 +144,7 @@ export default function PricingPlans() {
 
               <div className="price-container">
                 <Text className="price-amount">
-                  {isAnnual
-                    ? (plan.monthlyPrice * 0.9).toFixed(0)
-                    : plan.monthlyPrice}
+                  {Intl.NumberFormat().format(plan.monthlyPrice)}
                 </Text>
                 <Text className="price-period">/ $BTO</Text>
               </div>
@@ -172,7 +174,7 @@ export default function PricingPlans() {
               </Button>
 
               <div className="features-section">
-                <Text strong>{plan.title} plan includes;</Text>
+                <Text strong>{plan.tier} plan includes : </Text>
                 <List
                   itemLayout="horizontal"
                   dataSource={plan.features}
@@ -189,6 +191,11 @@ export default function PricingPlans() {
             </Card>
           ))}
         </div>
+        {/* <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+          <Button type="primary" size="large" className="get-started-button">
+            Connect Wallet
+          </Button>
+        </div> */}
       </div>
       <div className="bg-footer">
         <FooterComponent />

@@ -1,30 +1,28 @@
-"use client"
-
 import type React from "react"
-import { useState } from "react"
-import { Typography, Form, Input, Button, Row, Col, Space, Divider, Statistic, message } from "antd"
-import { MailOutlined, TwitterOutlined, FacebookOutlined, InstagramOutlined, LinkedinOutlined } from "@ant-design/icons"
-
+// import { useState } from "react"
+import { Typography, Form, Button, Row, Col, Space, Divider, Statistic } from "antd"
+import { FacebookOutlined, XOutlined ,PhoneOutlined  ,InstagramOutlined,BookOutlined } from "@ant-design/icons"
+import { useNavigate } from "react-router-dom"
 const { Title, Paragraph } = Typography
 const { Countdown } = Statistic
 
 const ComingSoonPage: React.FC = () => {
-  const [form] = Form.useForm()
-  const [loading, setLoading] = useState(false)
-
+  // const [form] = Form.useForm()
+  // const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
   // Set launch date to 30 days from now
   const deadline = Date.now() + 1000 * 60 * 60 * 24 * 30
 
-  const onFinish = (values: { email: string }) => {
-    setLoading(true)
+  // const onFinish = (values: { email: string }) => {
+  //   setLoading(true)
 
-    // Simulate API call
-    setTimeout(() => {
-      message.success(`Thank you! We'll notify ${values.email} when we launch.`)
-      form.resetFields()
-      setLoading(false)
-    }, 1500)
-  }
+  //   // Simulate API call
+  //   setTimeout(() => {
+  //     message.success(`Thank you! We'll notify ${values.email} when we launch.`)
+  //     form.resetFields()
+  //     setLoading(false)
+  //   }, 1500)
+  // }
 
   return (
     <div className="coming-soon-container">
@@ -32,7 +30,7 @@ const ComingSoonPage: React.FC = () => {
         <Col xs={22} sm={20} md={16} lg={12} xl={10}>
           <div className="logo-container">
             <Title level={3} className="brand-name">
-              YourBrand
+              Biteology
             </Title>
           </div>
 
@@ -50,7 +48,7 @@ const ComingSoonPage: React.FC = () => {
             <Divider />
 
             <div className="subscribe-container">
-              <Title level={4}>Get Notified When We Launch</Title>
+              {/* <Title level={4}>Get Notified When We Launch</Title>
               <Form form={form} name="subscribe" onFinish={onFinish} layout="vertical">
                 <Form.Item
                   name="email"
@@ -60,13 +58,13 @@ const ComingSoonPage: React.FC = () => {
                   ]}
                 >
                   <Input prefix={<MailOutlined />} placeholder="Your email address" size="large" />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item>
-                  <Button type="primary" htmlType="submit" size="large" block loading={loading}>
-                    Notify Me
+                  <Button type="primary" htmlType="submit" size="large" block  onClick={() => navigate("/")}>
+                    Go Back
                   </Button>
                 </Form.Item>
-              </Form>
+              {/* </Form> */}
             </div>
 
             <Divider />
@@ -74,10 +72,11 @@ const ComingSoonPage: React.FC = () => {
             <div className="social-container">
               <Title level={5}>Follow Us</Title>
               <Space size="large">
-                <Button type="text" icon={<TwitterOutlined />} size="large" />
+                <Button type="text" icon={<XOutlined />} size="large" />
                 <Button type="text" icon={<FacebookOutlined />} size="large" />
                 <Button type="text" icon={<InstagramOutlined />} size="large" />
-                <Button type="text" icon={<LinkedinOutlined />} size="large" />
+                <Button type="text" icon={<BookOutlined />} size="large" />
+                <Button type="text" icon={<PhoneOutlined />} size="large" />
               </Space>
             </div>
           </div>

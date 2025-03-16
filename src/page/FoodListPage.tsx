@@ -1,11 +1,12 @@
 import type React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Typography, Row, Col, Card, Spin } from "antd";
 
 import "./FoodListPage.css";
 import HeaderComponent from "../components/HeaderComponent";
 import FilterTabs from "../components/FilterTabs";
 import ModalPoppup from "../components/ModalPoppup";
+import FooterComponent from "../components/Footer";
 const { Title, Text } = Typography;
 
 interface FoodItem {
@@ -74,7 +75,6 @@ const FoodListPage: React.FC = () => {
       image:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzpLPdZ1UZxWJnDGpsJz6KJQrAbhnMYnJZvZjyiaTj-Yepa8CRpUaXp5fmRT0_YCxWewc&usqp=CAU",
     },
-
   ];
 
   useEffect(() => {
@@ -100,8 +100,9 @@ const FoodListPage: React.FC = () => {
           <div className="header-content">
             <Title className="main-title">GALLERY & LIST COMBO</Title>
             <Text className="subtitle">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore
+              We provide detailed information about the origin and benefits of
+              each product, making it easy for you to choose foods that suit
+              your personal needs and preferences.
             </Text>
           </div>
         </div>
@@ -160,6 +161,7 @@ const FoodListPage: React.FC = () => {
           }}
         />
       )}
+      <FooterComponent/>
     </>
   );
 };

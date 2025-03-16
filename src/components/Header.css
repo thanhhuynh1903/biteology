@@ -16,94 +16,61 @@
   background-color: #373737;
 }
 
-.logo-image {
-  width: 80px;
-  height: auto;
-  margin-right: 10px;
-}
-
-.header-scrolled .logo-text {
-  color: #fff;
-}
-
-.header-scrolled .ant-menu {
-  background-color: transparent;
-  color: #fff;
-}
-
-.header-scrolled .ant-menu-item {
-  color: #fff !important;
-}
-
-.header-scrolled .ant-menu-title-content {
-  color: #fff;
-}
-
+/* Logo & text */
 .logo-container {
   display: flex;
   align-items: center;
 }
-
-.logo {
-  height: 24px;
-  margin-right: 8px;
+.logo-image {
+  width: 80px;
+  height: auto;
 }
-
 .logo-text {
   font-size: 18px;
   font-weight: 600;
   color: #4caf50 !important;
+  margin-left: 10px;
   transition: color 0.3s ease;
 }
+.header-scrolled .logo-text {
+  color: #fff;
+}
 
-.menu {
+/* Menu desktop */
+.desktop-menu {
   flex: 1;
   display: flex;
   justify-content: center;
   border-bottom: none;
   background: transparent;
-  transition: background-color 0.3s ease;
 }
 
-.ant-menu-item {
-  color: #666;
-  font-size: 14px;
-  transition: color 0.3s ease;
-}
-
-.login-button {
-  background-color: #4caf50;
-  border-color: #4caf50;
+/* Khu vực nút Copy + Connect (desktop) */
+.desktop-buttons {
   display: flex;
   align-items: center;
-  gap: 5px;
-  border-radius: 4px;
-  padding: 0 16px;
 }
 
-.login-button:hover {
-  background-color: #4caf50;
-  border-color: #4caf50;
+/* Ẩn hamburger trên desktop */
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: #4caf50;
+  font-size: 24px;
+  cursor: pointer;
 }
 
-/* Responsive styles */
-@media (max-width: 1200px) {
-  .header {
-    padding: 0 30px;
-  }
+/* Khi scroll -> đổi màu text, menu, icon */
+.header-scrolled .ant-menu,
+.header-scrolled .ant-menu-item,
+.header-scrolled .ant-menu-title-content,
+.header-scrolled .mobile-menu-button {
+  background-color: transparent;
+  color: #fff !important;
 }
 
-@media (max-width: 992px) {
-  .header {
-    padding: 0 20px;
-  }
-
-  .menu {
-    justify-content: flex-end;
-    padding-right: 20px;
-  }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
   .header {
     padding: 0 16px;
@@ -118,79 +85,19 @@
     width: 40px;
   }
 
-  .login-button {
-    padding: 0 12px;
-  }
-
-  .login-button span {
-    display: none;
+  .desktop-buttons {
+    display: none; /* Ẩn hai nút này trên mobile */
   }
 }
 
 @media (max-width: 576px) {
-  .header {
-    padding: 0 12px;
+  .desktop-menu {
+    display: none; /* Ẩn menu desktop trên mobile */
   }
 
-  .logo-container {
-    flex-shrink: 0;
-  }
-
-  .menu {
-    display: none;
-  }
-
-  /* Add a mobile menu button that appears on small screens */
   .mobile-menu-button {
-    display: block;
+    display: block; /* Hiện nút hamburger */
     margin-left: auto;
     margin-right: 16px;
   }
-
-  /* Style for mobile dropdown menu */
-  .mobile-menu {
-    position: absolute;
-    top: 56px;
-    left: 0;
-    right: 0;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-  }
-
-  .header-scrolled .mobile-menu {
-    background-color: #373737;
-  }
 }
-
-/* Add a class for the mobile menu button */
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  color: #4caf50;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.header-scrolled .mobile-menu-button {
-  color: #fff;
-}
-
-/* Add styles for when the mobile menu is open */
-.mobile-menu-open {
-  height: auto;
-}
-
-/* Ensure the logo stays visible */
-@media (max-width: 400px) {
-  .logo-text {
-    font-size: 14px;
-  }
-
-  .logo-image {
-    width: 32px;
-    margin-right: 6px;
-  }
-}
-

@@ -1,46 +1,42 @@
-import type React from "react";
-import { useState, useEffect } from "react";
-import { Layout, Menu, Button, Dropdown, Badge, Space } from "antd";
+import React, { useState, useEffect } from "react";
+import { Layout, Menu, Button, Badge, Drawer } from "antd";
 import {
   LoginOutlined,
   DownOutlined,
   MenuOutlined,
-  CloseOutlined,
   CopyOutlined,
 } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-import "./Header.css";
+import { ToastContainer, toast } from "react-toastify";
+
 import biteologo from "../assets/logo.png";
-import { ToastContainer, toast } from 'react-toastify';
+import "./Header.css";
 
 const { Header } = Layout;
 
-const HeaderComponent: React.FC<any> = ({}) => {
+const HeaderComponent: React.FC = () => {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const caCode = "XXXXXXXXXXXXXXXXXXXXXXXX"; 
+  const caCode = "XXXXXXXXXXXXXXXXXXXXXXXX";
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY;
-      setScrolled(offset > 50);
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Danh sách menu
   const menuItems = [
     { key: "home", label: "Home", route: "" },
     { key: "join", label: "Join a Trial", route: "payment" },
     {
       key: "unify",
       label: (
-        <Space>
-          Unify Platform
+        <>
+          Unify Platform{" "}
           <Badge
             count="NEW"
             style={{
@@ -52,13 +48,14 @@ const HeaderComponent: React.FC<any> = ({}) => {
               borderRadius: "2px",
             }}
           />
-        </Space>
+        </>
       ),
       route: "medical",
     },
-    { key: "Health library", label: "Health Library", route: "food" },
+    { key: "health", label: "Health Library", route: "food" },
   ];
 
+  // Xử lý khi click menu item
   const handleMenuClick = ({ key }: { key: string }) => {
     const item = menuItems.find((m) => m.key === key);
     if (item?.route !== undefined) {
@@ -67,6 +64,7 @@ const HeaderComponent: React.FC<any> = ({}) => {
     setMobileMenuOpen(false);
   };
 
+  // Copy CA code
   const handleCopy = () => {
     navigator.clipboard
       .writeText(caCode)
@@ -80,17 +78,9 @@ const HeaderComponent: React.FC<any> = ({}) => {
 
   return (
     <Header className={`header ${scrolled ? "header-scrolled" : ""}`}>
+      {/* Logo + Tên */}
       <div className="logo-container">
-        <div
-          style={{
-            width: 28,
-            height: 28,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 4,
-          }}
-        >
+        <div style={{ width: 30, height: 30,display:"flex" }}>
           <img
             src={biteologo}
             alt="Biteology Logo"
@@ -103,58 +93,80 @@ const HeaderComponent: React.FC<any> = ({}) => {
         </Link>
       </div>
 
-      {/* Mobile Menu Button */}
-      <button
+      {/* Nút mở Drawer (hamburger) cho mobile */}
+      <Button
         className="mobile-menu-button"
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-      >
-        {mobileMenuOpen ? <CloseOutlined /> : <MenuOutlined />}
-      </button>
+        type="text"
+        icon={<MenuOutlined style={{ fontSize: 22 }} />}
+        onClick={() => setMobileMenuOpen(true)}
+      />
 
-      {/* Desktop Menu */}
+      {/* Menu cho desktop */}
       <Menu
         mode="horizontal"
         items={menuItems}
-        className="menu"
+        className="menu desktop-menu"
         selectedKeys={[]}
         onClick={handleMenuClick}
       />
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="mobile-menu">
-          <Menu mode="vertical" items={menuItems} onClick={handleMenuClick} />
-        </div>
-      )}
+      {/* Nút Copy CA + Connect Wallet chỉ hiện ở desktop */}
+      <div className="desktop-buttons">
+        <Button
+          type="primary"
+          style={{ marginRight: 8, borderRadius: 20 }}
+          onClick={handleCopy}
+        >
+          <span>
+            <strong>CA : </strong>
+            {caCode}
+          </span>
+          <CopyOutlined />
+        </Button>
 
-      {/* Copy Button */}
-      <Button
-        type="primary"
-        style={{ marginRight: 8, borderRadius: 20 }}
-        onClick={handleCopy}
-      >
-        <span><strong>CA : </strong>{caCode}</span>
-        <CopyOutlined />
-      </Button>
-
-      {/* Login Dropdown */}
-      <Dropdown
-        menu={{
-          items: [
-            { key: "1", label: "Profile" },
-            { key: "2", label: "Logout" },
-          ],
-        }}
-        placement="bottomRight"
-      >
         <Button type="primary" className="login-button">
           <LoginOutlined />
           <span>Connect Wallet</span>
           <DownOutlined />
         </Button>
-      </Dropdown>
-      <ToastContainer autoClose={400} />
+      </div>
 
+      {/* Drawer chứa menu + 2 nút trên mobile */}
+      <Drawer
+        title="Menu"
+        placement="right"
+        closable
+        onClose={() => setMobileMenuOpen(false)}
+        open={mobileMenuOpen}
+      >
+        <Menu mode="vertical" items={menuItems} onClick={handleMenuClick} />
+
+        <div style={{ marginTop: 16 }}>
+          <Button
+            type="primary"
+            style={{ marginBottom: 8, borderRadius: 20, width: "100%" }}
+            onClick={handleCopy}
+          >
+            <span>
+              <strong>CA : </strong>
+              {caCode}
+            </span>
+            <CopyOutlined />
+          </Button>
+
+          <Button
+            type="primary"
+            className="login-button"
+            style={{ width: "100%", borderRadius: 20 }}
+          >
+            <LoginOutlined />
+            <span style={{ marginLeft: 8 }}>Connect Wallet</span>
+            <DownOutlined />
+          </Button>
+        </div>
+      </Drawer>
+
+      <ToastContainer autoClose={400} />
     </Header>
   );
 };
