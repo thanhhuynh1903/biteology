@@ -22,7 +22,7 @@ interface FoodItem {
 
 const FoodListPage: React.FC = () => {
   const [country, setCountry] = useState<string>("Vietnamese");
-
+  const apiKey = import.meta.env.VITE_API_KEY;
   const [selectedFood, setSelectedFood] = useState<any | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState(true);
@@ -83,7 +83,7 @@ const FoodListPage: React.FC = () => {
   const handleFetchAPI = async (retryCount = 0, cuisineParam = country) => {
     try {
       const response = await fetch(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=1733c938295b4af4809740273e9a2d41&minCarbs=10&maxCarbs=50&fillIngredients=true&instructionsRequired=true&cuisine=${cuisineParam}`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&minCarbs=10&maxCarbs=50&fillIngredients=true&instructionsRequired=true&cuisine=${cuisineParam}`
       );
 
       if (!response.ok) {
