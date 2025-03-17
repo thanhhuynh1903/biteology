@@ -6,7 +6,7 @@ import {
   MenuOutlined,
   CopyOutlined,
 } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 import biteologo from "../assets/logo.png";
