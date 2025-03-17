@@ -3,11 +3,12 @@ import { Layout, Row, Col, Typography, Divider, Space } from 'antd';
 import { FacebookOutlined, XOutlined,InstagramOutlined,BookOutlined  } from '@ant-design/icons';
 import Biteology from "../assets/logo.png";
 import TelegramIcon from '@mui/icons-material/Telegram';
-
+import { useNavigate } from 'react-router-dom';
 const { Footer } = Layout;
 const { Title, Text, Link } = Typography;
 
 const FooterComponent: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <Footer
       style={{
@@ -82,7 +83,7 @@ const FooterComponent: React.FC = () => {
             Social
           </Title>
           <Space size="large">
-            <FacebookOutlined style={{ fontSize: 24, color: '#333333' }} href=''/>
+            <FacebookOutlined style={{ fontSize: 24, color: '#333333' }}  onClick={() => navigate('/undefined')}/>
             <XOutlined style={{ fontSize: 23, color: '#333333' }}  onClick={() => window.open('https://x.com/BiteologyHealth')}/>
             <InstagramOutlined style={{ fontSize: 24, color: '#333333' }}  onClick={() => window.open('https://www.instagram.com/biteology_health')}/>
             <TelegramIcon onClick={() => window.open('https://t.me/biteology_health')} style={{cursor:"pointer"}}/>
