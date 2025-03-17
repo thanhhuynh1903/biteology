@@ -111,10 +111,10 @@ const MedicalUpload: React.FC = () => {
 
       {/* Chat Section */}
       <div style={{ marginTop: 24 }}>
-        <Title level={5}>Ask Pavise</Title>
+        <Title level={5}>Ask Biteology</Title>
         <Space.Compact style={{ width: "100%", marginTop: 16 }}>
           <TextArea
-            placeholder="Ask to Pavise..."
+            placeholder="Ask to Biteology..."
             autoSize={false}
             style={{ height: 180 }} // Fixed height instead of autoSize
           />
