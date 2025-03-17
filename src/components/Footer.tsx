@@ -1,7 +1,9 @@
 import React from 'react';
 import { Layout, Row, Col, Typography, Divider, Space } from 'antd';
-import { FacebookOutlined, XOutlined ,PhoneOutlined  ,InstagramOutlined,BookOutlined  } from '@ant-design/icons';
+import { FacebookOutlined, XOutlined,InstagramOutlined,BookOutlined  } from '@ant-design/icons';
 import Biteology from "../assets/logo.png";
+import TelegramIcon from '@mui/icons-material/Telegram';
+
 const { Footer } = Layout;
 const { Title, Text, Link } = Typography;
 
@@ -83,7 +85,7 @@ const FooterComponent: React.FC = () => {
             <FacebookOutlined style={{ fontSize: 24, color: '#333333' }} href=''/>
             <XOutlined style={{ fontSize: 23, color: '#333333' }}  onClick={() => window.open('https://x.com/BiteologyHealth')}/>
             <InstagramOutlined style={{ fontSize: 24, color: '#333333' }}  onClick={() => window.open('https://www.instagram.com/biteology_health')}/>
-            <PhoneOutlined style={{ fontSize: 24, color: '#333333' }} onClick={() => window.open('https://t.me/biteology_health')} />
+            <TelegramIcon onClick={() => window.open('https://t.me/biteology_health')} style={{cursor:"pointer"}}/>
             <BookOutlined style={{ fontSize: 24, color: '#333333' }}  onClick={() => window.open('https://biteologys-team.gitbook.io/biteology-docs')}/>
           </Space>
         </Col>
