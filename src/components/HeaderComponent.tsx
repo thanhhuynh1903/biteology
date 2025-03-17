@@ -79,8 +79,8 @@ const HeaderComponent: React.FC = () => {
   return (
     <Header className={`header ${scrolled ? "header-scrolled" : ""}`}>
       {/* Logo + Tên */}
-      <div className="logo-container">
-        <div style={{ width: 30, height: 30,display:"flex" }}>
+      <div className="logo-container" onClick={() => navigate("/")}>
+        <div style={{ width: 30, height: 30, display: "flex" }}>
           <img
             src={biteologo}
             alt="Biteology Logo"
@@ -88,9 +88,7 @@ const HeaderComponent: React.FC = () => {
             style={{ width: "100%", height: "100%" }}
           />
         </div>
-        <Link to="/" className="logo-text">
-          Biteology
-        </Link>
+        <p className="logo-text">Biteology</p>
       </div>
 
       {/* Nút mở Drawer (hamburger) cho mobile */}
