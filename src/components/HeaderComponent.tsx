@@ -110,7 +110,7 @@ const HeaderComponent: React.FC = () => {
 
       {/* Nút Copy CA + Connect Wallet chỉ hiện ở desktop */}
       <div className="desktop-buttons">
-        <Button
+        {/* <Button
           type="primary"
           style={{ marginRight: 8, borderRadius: 20 }}
           onClick={handleCopy}
@@ -120,7 +120,7 @@ const HeaderComponent: React.FC = () => {
             {caCode}
           </span>
           <CopyOutlined />
-        </Button>
+        </Button> */}
 
         <Button type="primary" className="login-button">
           <LoginOutlined />
