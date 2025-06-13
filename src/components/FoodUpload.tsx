@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Upload, Button, Input, Typography, Space, List, Row, Col, Image } from "antd";
+import { Card, Upload, Button, Input, Typography, Space, Image } from "antd";
 import { CloudUploadOutlined, DeleteOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
 import NutritionDisplay from "./NutrionList";

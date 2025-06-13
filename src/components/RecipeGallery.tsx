@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, Col, Row, Tag, Typography, Divider, Button, Collapse, Image } from 'antd';
+import { Card, Col, Row, Tag, Typography, Divider, Button, Collapse } from 'antd';
 import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
